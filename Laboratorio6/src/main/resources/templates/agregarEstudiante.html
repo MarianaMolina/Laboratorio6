@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Nuevo estudiante</title>
+</head>
+<body>
+	
+	<h1>Ingresar nuevo estudiante</h1>
+	
+	<form action="#" th:action="@{/save}" th:object="${estudiante}" method="post">
+		<div>
+			<label for="nombre"><font color="#000000" face ="Arial" >Nombre: </font>  </label>
+			<input type="text" th:field="*{nombre}" id="nombre" required >
+			<span th:errors ="*{nombre}" style="color:#FF0000"></span>
+		</div>
+		
+		<br>
+		
+		<div>
+			<label for="apellido"> <font color="#000000" face ="Arial">Apellido: </font>  </label>
+			<input type="text" th:field="*{apellido}" id="apellido" required >
+			<span th:errors ="*{apellido}" style="color:#FF0000"></span>
+		</div>
+		
+		<br>
+		
+		<div>
+			<label for="edad"> <font color="#000000" face ="Arial"> Edad: </font>  </label>
+			<input type="text" th:field="*{edad}" id="edad" required>
+			<span th:errors ="*{edad}" style="color:#FF0000"></span>
+		</div>
+		
+		<br>
+		
+		<div>
+			<label>Activo</label>
+			<input type="radio" th:field="*{estado}" th:value="${true}">
+			<label>Inactivo</label>
+			<input type="radio" th:field="*{estado}" th:value="${false}">
+	
+		</div>
+		
+		<br>
+		
+		<input type="submit" value="Guardar">  
+		<a href ="/listaEstudiantes"> listado completo </a>
+		
+	</form>
+
+</body>
+</html>
