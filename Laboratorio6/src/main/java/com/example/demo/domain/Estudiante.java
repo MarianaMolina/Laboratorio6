@@ -1,10 +1,14 @@
 package com.example.demo.domain;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
@@ -40,12 +44,26 @@ public class Estudiante {
 	@Column(name="estado")
 	private Boolean estado;
 	
+	@OneToMany(mappedBy ="estudiante", fetch = FetchType.EAGER)
+	private List<Computadora> computadora;
+	
 	//CONSTRUCTOR
 	public Estudiante() {
 		
 	}
 	
+	//FUNCION
+	public String getEstadoDelegate() {
+		if(this.estado==null)return "";
+		else {
+			return estado == true? "Activo":"Inactivo";
+		}
+	}
+
+	
+	
 	//GETTERS Y SETTERS
+	
 	
 	public Integer getCodigoEstudiante() {
 		return codigoEstudiante;
@@ -86,16 +104,16 @@ public class Estudiante {
 	public void setEstado(Boolean estado) {
 		this.estado = estado;
 	}
-	
-	//FUNCION
-	public String getEstadoDelegate() {
-		if(this.estado==null)return "";
-		else {
-			return estado == true? "Activo":"Inactivo";
-		}
+
+	public List<Computadora> getComputadora() {
+		return computadora;
+	}
+
+	public void setComputadora(List<Computadora> computadora) {
+		this.computadora = computadora;
 	}
 	
-
+	
 	
 	
 }

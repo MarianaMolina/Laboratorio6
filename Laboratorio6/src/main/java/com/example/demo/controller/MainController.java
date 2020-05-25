@@ -25,18 +25,9 @@ public class MainController {
 	private EstudianteService estudianteService;
 	
 	//Mostrar lista de Estudiantes
-	@RequestMapping ("/estudiante")
-	public ModelAndView initMain() {
+	@RequestMapping ("/")
+	public ModelAndView Main() {
 		ModelAndView mav = new ModelAndView();
-		List <Estudiante> estudiantes = null;
-		try {
-			estudiantes = estudianteService.findAll();
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		mav.addObject("estudiantes", estudiantes);
 		mav.setViewName("main");
 		return mav;
 	}
@@ -45,13 +36,7 @@ public class MainController {
 	@RequestMapping (value = "/mostrarEstudiante", method = RequestMethod.POST)
 	public ModelAndView findOne(@RequestParam (value = "codigo") int id) {
 		ModelAndView mav = new ModelAndView();
-		Estudiante estudiante = null;
-		try {
-			estudiante = estudianteService.findOne(id);
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
+		Estudiante estudiante = estudianteService.findOne(id);
 		
 		mav.addObject("estudiante", estudiante);
 		mav.setViewName("estudiante");
